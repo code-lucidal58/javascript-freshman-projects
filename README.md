@@ -1,2 +1,7 @@
 # random-quote_generator
-Random Quote Generator
+
+Ref: https://freshman.tech/random-quote-machine/
+
+## APIs used
+* https://whatdoestrumpthink.com/api-docs/index.html
+
