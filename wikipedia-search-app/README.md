@@ -10,5 +10,8 @@ the "get quote" button is disabled. This webpage also gives an option to tweet t
 * https://whatdoestrumpthink.com/api-docs/index.html
 * https://tobiasahlin.com/spinkit/ For the loading animation
 
+## JavaScript concepts learnt
+* Forms with input fields
+* 
 ## TODO
 Personalise quotes using the API endpoint `GET v1/quotes/personalized?q=<YOURNAME>`
