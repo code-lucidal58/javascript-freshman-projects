@@ -2,16 +2,17 @@
 
 Ref: https://freshman.tech/wikipedia-javascript/
 
-This webpage fetched a quote from What Does Trump Think API, which generates a random quote,
-and shows it. It has a loading animation to show the process of fetching. And, during the fetch process,
-the "get quote" button is disabled. This webpage also gives an option to tweet the shown quote to Twitter.
+This webpage 
 
 ## APIs used
-* https://whatdoestrumpthink.com/api-docs/index.html
-* https://tobiasahlin.com/spinkit/ For the loading animation
+* https://www.mediawiki.org/wiki/API:Search Wikipedia Search API
+* https://tobiasahlin.com/spinkit/ for Loading indicator
 
 ## JavaScript concepts learnt
 * Forms with input fields
-* 
+* AJAX request
+* Callback function
+* Inserting HTML using `insertAdjacentHTML`
+
 ## TODO
 Personalise quotes using the API endpoint `GET v1/quotes/personalized?q=<YOURNAME>`
