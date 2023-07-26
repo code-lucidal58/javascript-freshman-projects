@@ -13,6 +13,8 @@ This webpage
 * AJAX request
 * Callback function
 * Inserting HTML using `insertAdjacentHTML`
+* Show alert box
 
 ## TODO
-Personalise quotes using the API endpoint `GET v1/quotes/personalized?q=<YOURNAME>`
+* Take number of results to show in one page as input from user
+* Implement pagination (i.e., show results beyond 20 items)

@@ -42,6 +42,10 @@ function afterLoad() {
         spinner.classList.remove('hidden');
         try {
             const results = await searchWikipedia(searchQuery);
+            // check the number of items received in the response
+            if (results.query.searchInfo.totalhits === 0) {
+                alert('No results found. Try different keywords');
+            }
             displayResults(results);
         } catch (err) {
             console.log(err);
