@@ -2,7 +2,10 @@
 
 Ref: https://freshman.tech/wikipedia-javascript/
 
-This webpage 
+This webpage takes a keyword as input and searches it in Wikipedia using their API.
+It fetched 20 results only and displays it along with the article link and preview text.
+It has a loader than shows up when the result-fetching process is going on, and 
+alerts when no results are found or the process fails in between.
 
 ## APIs used
 * https://www.mediawiki.org/wiki/API:Search Wikipedia Search API

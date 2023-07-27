@@ -2,3 +2,4 @@
 
 * Random Quote Generator
 * Wikipedia Search App
+* Calculator
