@@ -18,6 +18,15 @@ function afterLoad() {
     }
 
     function inputDecimal(dot) {
+        if (calculator.displayValue === '-') {
+            calculator.displayValue = '-0.';
+            return;
+        }
+        if (calculator.waitingForSecondOperand) {
+            calculator.displayValue = '0.';
+            calculator.waitingForSecondOperand = false;
+            return;
+        }
         // there can be only one dot
         if (!calculator.displayValue.includes(dot)) {
             calculator.displayValue += dot;
@@ -27,7 +36,7 @@ function afterLoad() {
     function handleOperator(nextOperator) {
         const {firstOperand, displayValue, operator} = calculator;
         const inputValue = parseFloat(displayValue);
-        if (nextOperator === '-' && ( firstOperand === null || operator)) {
+        if (nextOperator === '-' && (operator === null || operator==='=') && (isNaN(inputValue) || inputValue === 0)){
             // handle input of negative numbers
             calculator.displayValue = nextOperator;
             calculator.waitingForSecondOperand = false;
@@ -64,6 +73,14 @@ function afterLoad() {
         display.value = calculator.displayValue;
     }
 
+    function resetCalculator() {
+        calculator.displayValue = '0';
+        calculator.firstOperand = null;
+        calculator.waitingForSecondOperand = false;
+        calculator.operator = null;
+        console.log(calculator);
+    }
+
     updateDisplay();
 
     const keys = document.querySelector('.calculator-keys');
@@ -78,7 +95,8 @@ function afterLoad() {
             inputDecimal(target.value);
             updateDisplay();
         } else if (target.classList.contains('all-clear')) {
-            console.log('clear', target.value);
+            resetCalculator();
+            updateDisplay();
         } else {
             inputDigit(target.value);
             updateDisplay();
