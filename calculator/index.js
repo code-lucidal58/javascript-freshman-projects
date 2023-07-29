@@ -7,8 +7,14 @@ function afterLoad() {
     };
 
     function inputDigit(digit) {
-        const {displayValue} = calculator;
-        calculator.displayValue = displayValue === '0'? digit: displayValue+digit;
+        const {displayValue, waitingForSecondOperand} = calculator;
+        if (waitingForSecondOperand) {
+            calculator.displayValue = digit;
+            calculator.waitingForSecondOperand = false;
+        } else {
+            calculator.displayValue = displayValue === '0'? digit: displayValue+digit;
+        }
+        console.log(calculator);
     }
 
     function inputDecimal(dot) {
@@ -16,6 +22,17 @@ function afterLoad() {
         if (!calculator.displayValue.includes(dot)) {
             calculator.displayValue += dot;
         }
+    }
+
+    function handleOperator(nextOperator) {
+        const {firstOperand, displayValue, operator} = calculator;
+        const inputValue = parseFloat(displayValue);
+        if (firstOperand === null && !isNaN(inputValue)) {
+            calculator.firstOperand = inputValue;
+        }
+        calculator.waitingForSecondOperand = true;
+        calculator.operator = nextOperator;
+        console.log(calculator);
     }
 
     function updateDisplay() {
@@ -31,7 +48,8 @@ function afterLoad() {
         if (!target.matches('button')) {
             return;
         } else if (target.classList.contains('operator')) {
-            console.log('operator', target.value);
+            handleOperator(target.value);
+            updateDisplay();
         } else if (target.classList.contains('decimal')) {
             inputDecimal(target.value);
             updateDisplay();
