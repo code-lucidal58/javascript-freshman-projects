@@ -29,10 +29,24 @@ function afterLoad() {
         const inputValue = parseFloat(displayValue);
         if (firstOperand === null && !isNaN(inputValue)) {
             calculator.firstOperand = inputValue;
+        } else if (operator) {
+            const result = calculate(firstOperand, inputValue, operator);
+            calculator.displayValue = String(result);
+            calculator.firstOperand = result;
         }
         calculator.waitingForSecondOperand = true;
         calculator.operator = nextOperator;
         console.log(calculator);
+    }
+
+    function calculate(firstOperand, secondOperand, operator) {
+        switch (operator){
+            case '+': return firstOperand+secondOperand;
+            case '-': return firstOperand-secondOperand;
+            case '*': return firstOperand*secondOperand;
+            case '/': return firstOperand/secondOperand;
+        }
+        return secondOperand;
     }
 
     function updateDisplay() {
