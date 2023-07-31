@@ -12,7 +12,7 @@ function afterLoad() {
             calculator.displayValue = digit;
             calculator.waitingForSecondOperand = false;
         } else {
-            calculator.displayValue = displayValue === '0'? digit: displayValue+digit;
+            calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
         }
         console.log(calculator);
     }
@@ -36,7 +36,7 @@ function afterLoad() {
     function handleOperator(nextOperator) {
         const {firstOperand, displayValue, operator} = calculator;
         const inputValue = parseFloat(displayValue);
-        if (nextOperator === '-' && (operator === null || operator==='=') && (isNaN(inputValue) || inputValue === 0)){
+        if (nextOperator === '-' && (operator === null || operator === '=') && (isNaN(inputValue) || inputValue === 0)) {
             // handle input of negative numbers
             calculator.displayValue = nextOperator;
             calculator.waitingForSecondOperand = false;
@@ -50,7 +50,7 @@ function afterLoad() {
             calculator.firstOperand = inputValue;
         } else if (operator) {
             const result = calculate(firstOperand, inputValue, operator);
-            calculator.displayValue = String(result);
+            calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
             calculator.firstOperand = result;
         }
         calculator.waitingForSecondOperand = true;
@@ -59,11 +59,15 @@ function afterLoad() {
     }
 
     function calculate(firstOperand, secondOperand, operator) {
-        switch (operator){
-            case '+': return firstOperand+secondOperand;
-            case '-': return firstOperand-secondOperand;
-            case '*': return firstOperand*secondOperand;
-            case '/': return firstOperand/secondOperand;
+        switch (operator) {
+            case '+':
+                return firstOperand + secondOperand;
+            case '-':
+                return firstOperand - secondOperand;
+            case '*':
+                return firstOperand * secondOperand;
+            case '/':
+                return firstOperand / secondOperand;
         }
         return secondOperand;
     }
@@ -86,21 +90,30 @@ function afterLoad() {
     const keys = document.querySelector('.calculator-keys');
     keys.addEventListener('click', (event) => {
         const {target} = event;
+        const {value} = target;
         if (!target.matches('button')) {
             return;
-        } else if (target.classList.contains('operator')) {
-            handleOperator(target.value);
-            updateDisplay();
-        } else if (target.classList.contains('decimal')) {
-            inputDecimal(target.value);
-            updateDisplay();
-        } else if (target.classList.contains('all-clear')) {
-            resetCalculator();
-            updateDisplay();
-        } else {
-            inputDigit(target.value);
-            updateDisplay();
         }
+        switch (value) {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '=':
+                handleOperator(value);
+                break;
+            case '.':
+                inputDecimal(value);
+                break;
+            case 'all-clear':
+                resetCalculator();
+                break;
+            default:
+                if (Number.isInteger(parseFloat(value))) {
+                    inputDigit(value)
+                }
+        }
+        updateDisplay();
 
     })
 }
