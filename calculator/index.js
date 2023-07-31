@@ -27,6 +27,16 @@ function afterLoad() {
     function handleOperator(nextOperator) {
         const {firstOperand, displayValue, operator} = calculator;
         const inputValue = parseFloat(displayValue);
+        if (nextOperator === '-' && ( firstOperand === null || operator)) {
+            // handle input of negative numbers
+            calculator.displayValue = nextOperator;
+            calculator.waitingForSecondOperand = false;
+            return;
+        }
+        if (operator && calculator.waitingForSecondOperand) {
+            calculator.operator = nextOperator;
+            return;
+        }
         if (firstOperand === null && !isNaN(inputValue)) {
             calculator.firstOperand = inputValue;
         } else if (operator) {
