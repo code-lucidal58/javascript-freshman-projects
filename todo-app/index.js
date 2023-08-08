@@ -3,6 +3,7 @@ function afterLoad() {
 
     function renderTodo(todo) {
         const list = document.querySelector('.js-todo-list');
+        const item = document.querySelector(`[data-key='${todo.id}'`);
         const isChecked = todo.checked ? 'done' : '';
         const node = document.createElement("li");
         node.setAttribute('class', `todo-item ${isChecked}`);
@@ -14,7 +15,11 @@ function afterLoad() {
             <button class="delete-todo js-delete-todo">
             <svg><use href="#delete-icon"></use></svg>
             </button>`;
-        list.append(node);
+        if (item) {
+            list.replaceChild(node,item);
+        } else {
+            list.append(node);
+        }
     }
 
     function addTodo(text) {
@@ -27,6 +32,12 @@ function afterLoad() {
         renderTodo(todo);
     }
 
+    function toggleDone(key) {
+        const index = todoItems.findIndex(item => item.id === Number(key));
+        todoItems[index].checked = !todoItems[index].checked;
+        renderTodo(todoItems[index]);
+    }
+
     const form = document.querySelector('.js-form');
     form.addEventListener('submit', event => {
         //prevent page refresh on form submission
@@ -37,6 +48,14 @@ function afterLoad() {
             addTodo(text);
             input.value = '';
             input.focus();
+        }
+    });
+
+    const list = document.querySelector('.js-todo-list');
+    list.addEventListener('click', event => {
+        if (event.target.classList.contains('js-tick')) {
+            const itemKey = event.target.parentElement.dataset.key;
+            toggleDone(itemKey);
         }
     });
 }
