@@ -6,6 +6,7 @@ function afterLoad() {
         const item = document.querySelector(`[data-key='${todo.id}'`);
         if (todo.deleted) {
             item.remove(); // remove item from DOM
+            if (todoItems.length === 0) list.innerHTML = ''; // remove any left behind whitespaces
             return;
         }
         const isChecked = todo.checked ? 'done' : '';
