@@ -11,6 +11,7 @@ This webpage is a basic todo list app. A user can add a task, mark it complete o
 ## JavaScript concepts learnt
 * `data-*` for custom data attributes on HTML elements
 * Add, Replace or Remove HTML components dynamically
+* Add event listener that works after page load
 
 ## TODO
 * 
