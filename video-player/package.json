@@ -1,0 +1,15 @@
+{
+  "name": "video-player",
+  "version": "1.0.0",
+  "description": "Custom HTML5 video player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx browser-sync start -sw"
+  },
+  "author": "Aanisha Mishra",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}
