@@ -16,7 +16,7 @@ using HTML5. The following will be the features of the video player:
 * HTML5 Media API
 
 ## JavaScript concepts learnt
-* 
+* Shorthand to cast a variable to be boolean (!!)
 
 ## TODO
 * 
