@@ -17,6 +17,8 @@ using HTML5. The following will be the features of the video player:
 
 ## JavaScript concepts learnt
 * Shorthand to cast a variable to be boolean (!!)
+* Events for a video tag
+* Toggle (add/remove) class from classlist of an element
 
 ## TODO
 * 
