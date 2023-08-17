@@ -23,3 +23,4 @@ using HTML5. The following will be the features of the video player:
 ## Changes
 * Updated `seek` and `progressBar` value to 0 in `initializeVideo` function.
 * Change the event type from `input` to `click` for `seek` while attaching `skipAhead` function.
+* The above change works either way.

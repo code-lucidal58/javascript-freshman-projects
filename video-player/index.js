@@ -100,7 +100,53 @@ function afterLoad() {
         seek.value = skipTo;
     }
 
-    seek.addEventListener('click', skipAhead);
+    seek.addEventListener('input', skipAhead);
+
+    //Update Volume
+    const volumeButton = document.getElementById('volume-button');
+    const volumeIcons = document.querySelectorAll('.volume-button use');
+    const volumeMute = document.querySelector('use[href="#volume-mute"]');
+    const volumeLow = document.querySelector('use[href="#volume-low"]');
+    const volumeHigh = document.querySelector('use[href="#volume-high"]');
+    const volume_input = document.getElementById('volume');
+
+    function updateVolume() {
+        if (video.muted) {
+            video.muted = false;
+        }
+        video.volume = volume_input.value;
+    }
+    volume_input.addEventListener('input', updateVolume);
+
+    //Update volume icon
+    function updateVolumeIcon() {
+        volumeIcons.forEach((icon => {
+            icon.classList.add('hidden');
+        }));
+        volumeButton.setAttribute('data-title', 'Mute (m)');
+        if(video.muted || video.volume === 0) {
+            volumeMute.classList.remove('hidden');
+            volumeButton.setAttribute('data-title', 'Unmute (m)');
+        } else if (video.volume>0 && video.volume <=0.5) {
+            volumeLow.classList.remove('hidden');
+        } else {
+            volumeHigh.classList.remove('hidden');
+        }
+    }
+
+    video.addEventListener('volumechange', updateVolumeIcon);
+
+    // Mute or Unmute volume
+    function toggleMute() {
+        video.muted = !video.muted;
+        if (video.muted) {
+            volume_input.setAttribute('data-volume', volume_input.value);
+            volume_input.value = 0;
+        } else {
+            volume_input.value = volume_input.dataset.volume;
+        }
+    }
+    volumeButton.addEventListener('click', toggleMute);
 }
 
 window.onload = afterLoad;
