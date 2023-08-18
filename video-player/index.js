@@ -10,7 +10,7 @@ function afterLoad() {
 
     // toggle play and pause actions and their tooltips
     const playButton = document.getElementById('play');
-
+    const playbackAnimation = document.getElementById('playback-animation');
     function togglePlay() {
         if (video.paused || video.ended) {
             video.play();
@@ -20,6 +20,24 @@ function afterLoad() {
     }
 
     playButton.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+
+    // update video play pause feedback animation
+    function animatePlayback() {
+        playbackAnimation.animate([
+            {
+                opacity: 1,
+                transform: "scale(1)",
+            },
+            {
+                opacity: 0,
+                transform: "scale(1.3)",
+            }
+        ], {
+            duration: 500,
+        });
+    }
+    video.addEventListener('click', animatePlayback);
 
     const playbackIcons = document.querySelectorAll('.playback-icons use');
 

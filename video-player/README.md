@@ -19,6 +19,8 @@ using HTML5. The following will be the features of the video player:
 * Shorthand to cast a variable to be boolean (!!)
 * Events for a video tag. play/pause/loadmetadata
 * Toggle (add/remove) class from classlist of an element
+* Add simple animations using `animate` object
+* Toggling between SVG images
 
 ## Changes
 * Updated `seek` and `progressBar` value to 0 in `initializeVideo` function.
