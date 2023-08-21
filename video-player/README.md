@@ -20,5 +20,6 @@ using HTML5. The following will be the features of the video player:
 * Events for a video tag. play/pause/loadmetadata
 * Toggle (add/remove) class from classlist of an element
 
-## TODO
-* 
+## Changes
+* Updated `seek` and `progressBar` value to 0 in `initializeVideo` function.
+* Change the event type from `input` to `click` for `seek` while attaching `skipAhead` function.
