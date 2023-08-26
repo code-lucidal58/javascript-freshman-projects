@@ -14,6 +14,8 @@ using HTML5. The following will be the features of the video player:
 
 ## APIs used
 * HTML5 Media API
+* Picture-in-Picture API (https://w3c.github.io/picture-in-picture/)
+* Web Animations API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
 
 ## JavaScript concepts learnt
 * Shorthand to cast a variable to be boolean (!!)

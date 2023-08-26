@@ -202,6 +202,31 @@ function afterLoad() {
     }
 
     videoContainer.addEventListener('fullscreenchange', updateFullscreenButton);
+
+    //Picture-in-picture
+    const pipButton = document.getElementById('pip-button');
+    document.addEventListener('DOMContentLoaded', ()=> {
+        if (!('pictureInPictureEnabled' in document)) {
+            pipButton.classList.add('hidden');
+        }
+    });
+
+    async function togglePip() {
+        try {
+            if (video !== document.pictureInPictureElement) {
+                pipButton.disabled = true;
+                await video.requestPictureInPicture();
+            } else {
+                await video.exitPictureInPicture();
+            }
+        } catch (error) {
+            alert(error);
+            console.error(error)
+        } finally {
+            pipButton.disabled = false;
+        }
+    }
+    pipButton.addEventListener('click', togglePip);
 }
 
 window.onload = afterLoad;
