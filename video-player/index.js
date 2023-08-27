@@ -227,6 +227,22 @@ function afterLoad() {
         }
     }
     pipButton.addEventListener('click', togglePip);
+
+    // Toggle video controls' visibility
+    function hideControls() {
+        if (video.paused) {
+            return;
+        }
+        videoControls.classList.add('hide');
+    }
+
+    function showControls() {
+        videoControls.classList.remove('hide');
+    }
+    video.addEventListener('mouseenter', showControls);
+    video.addEventListener('mouseleave', hideControls);
+    videoControls.addEventListener('mouseenter', showControls);
+    videoControls.addEventListener('mouseleave', hideControls);
 }
 
 window.onload = afterLoad;
