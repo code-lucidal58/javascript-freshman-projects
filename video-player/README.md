@@ -28,3 +28,9 @@ using HTML5. The following will be the features of the video player:
 * Updated `seek` and `progressBar` value to 0 in `initializeVideo` function.
 * Change the event type from `input` to `click` for `seek` while attaching `skipAhead` function.
 * The above change works either way.
+
+## TODO
+* Add support for captions and subtitles
+* Add speed support
+* Add the ability to fast-forward or rewind the video
+* Add ability to choose video resolution (720p, 480p, 360p, 240p)

@@ -243,6 +243,31 @@ function afterLoad() {
     video.addEventListener('mouseleave', hideControls);
     videoControls.addEventListener('mouseenter', showControls);
     videoControls.addEventListener('mouseleave', hideControls);
+
+    // Keyboard shortcuts
+    function keyboardShortcuts(event) {
+        const {key} = event;
+        switch (key) {
+            case 'k':
+                togglePlay();
+                animatePlayback();
+                if (video.paused) {
+                    showControls();
+                } else {
+                    setTimeout(()=> hideControls(), 2000);
+                }
+                break;
+            case 'm':
+                toggleMute(); break;
+            case 'f':
+                toggleFullScreen();
+                break;
+            case 'p':
+                togglePip();
+                break;
+        }
+    }
+    document.addEventListener('keyup', keyboardShortcuts);
 }
 
 window.onload = afterLoad;
