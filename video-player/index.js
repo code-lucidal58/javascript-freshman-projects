@@ -205,7 +205,7 @@ function afterLoad() {
 
     //Picture-in-picture
     const pipButton = document.getElementById('pip-button');
-    document.addEventListener('DOMContentLoaded', ()=> {
+    document.addEventListener('DOMContentLoaded', () => {
         if (!('pictureInPictureEnabled' in document)) {
             pipButton.classList.add('hidden');
         }
@@ -226,6 +226,7 @@ function afterLoad() {
             pipButton.disabled = false;
         }
     }
+
     pipButton.addEventListener('click', togglePip);
 
     // Toggle video controls' visibility
@@ -239,6 +240,7 @@ function afterLoad() {
     function showControls() {
         videoControls.classList.remove('hide');
     }
+
     video.addEventListener('mouseenter', showControls);
     video.addEventListener('mouseleave', hideControls);
     videoControls.addEventListener('mouseenter', showControls);
@@ -254,11 +256,12 @@ function afterLoad() {
                 if (video.paused) {
                     showControls();
                 } else {
-                    setTimeout(()=> hideControls(), 2000);
+                    setTimeout(() => hideControls(), 2000);
                 }
                 break;
             case 'm':
-                toggleMute(); break;
+                toggleMute();
+                break;
             case 'f':
                 toggleFullScreen();
                 break;
@@ -267,9 +270,8 @@ function afterLoad() {
                 break;
         }
     }
+
     document.addEventListener('keyup', keyboardShortcuts);
 }
 
 window.onload = afterLoad;
-
-
